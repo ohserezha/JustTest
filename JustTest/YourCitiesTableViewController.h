@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YourCitiesTableViewController : UITableViewController
-
+@property (strong, nonatomic) NSMutableArray *savedCities;
 @end

@@ -11,6 +11,7 @@
 @interface WeatherStatus : NSObject
 
 @property (strong, nonatomic) NSString *cityName;
+@property (strong, nonatomic) NSString *country;
 @property (assign, nonatomic) NSInteger cityID;
 @property (strong, nonatomic) NSString *sunriseTime;
 @property (strong, nonatomic) NSString *sunsetTime;

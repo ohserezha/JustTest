@@ -13,7 +13,6 @@
 
 @interface YourCitiesTableViewController ()
 
-@property (strong, nonatomic) NSArray *savedCities;
 @property (strong, nonatomic) NSMutableArray* weatherStatusesArray;
 @property (strong, nonatomic) WeatherStatus *weatherStatusOfSelectedCity;
 
@@ -23,10 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.savedCities = @[@524901, @703448,@2643743];
-    [self getWeatherForCitiesFromServer];
+    if (!self.savedCities){ self.savedCities = [NSMutableArray array]; };
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"%@", self.savedCities);
+    [self getWeatherForCitiesFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,15 +39,15 @@
 #pragma mark - API
 
 - (void)getWeatherForCitiesFromServer {
-//     NSMutableArray *wthrSts = self.weatherStatuses;
-    [[ServerManager sharedServerManager]
-     getWeatherByCityIDs:self.savedCities
-     onSuccess:^(NSArray *forecasts){
-         if (forecasts) self.weatherStatusesArray = [[NSMutableArray alloc] initWithArray:forecasts];
-         [self.tableView reloadData];
-     } onFailure:^(NSError *error, NSInteger statusCode) {
-         NSLog(@"error = %@, code = %ld", [error localizedDescription], statusCode);
-     }];
+    if ([self.savedCities count]>0){
+        [[ServerManager sharedServerManager] getWeatherByCityIDs:self.savedCities
+         onSuccess:^(NSArray *forecasts){
+             if (forecasts) self.weatherStatusesArray = [[NSMutableArray alloc] initWithArray:forecasts];
+             [self.tableView reloadData];
+         } onFailure:^(NSError *error, NSInteger statusCode) {
+             NSLog(@"error = %@, code = %ld", [error localizedDescription], statusCode);
+         }];
+    }
 }
 
 #pragma mark - Table view data source
@@ -57,7 +59,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.savedCities count];
+    return [self.weatherStatusesArray count];
 }
 
 
@@ -65,9 +67,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    //NSLog(@"\n\nweatherSs on construction: %@", self.weatherStatusesArray);
-    WeatherStatus *weather = [self.weatherStatusesArray objectAtIndex:indexPath.row];
-    if (weather) {
+    if (self.weatherStatusesArray) {
+        WeatherStatus *weather = [self.weatherStatusesArray objectAtIndex:indexPath.row];
         cell.textLabel.text = weather.cityName;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ °C, %@", weather.temp, weather.commonDescription];
     }
@@ -75,38 +76,38 @@
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Navigation
 

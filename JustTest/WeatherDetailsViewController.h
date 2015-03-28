@@ -10,6 +10,7 @@
 #import "WeatherStatus.h"
 
 @interface WeatherDetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *cityNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tempLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pressureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *humidityLabel;

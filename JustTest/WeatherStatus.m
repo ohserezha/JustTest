@@ -18,8 +18,9 @@
 {
     self = [super init];
     if (self) {
-        self.cityName = [responseObject objectForKey:@"name"];
         self.cityID = [[responseObject objectForKey:@"id"] integerValue];
+        self.cityName = [responseObject objectForKey:@"name"];
+        self.country = [[responseObject objectForKey:@"sys"] objectForKey:@"country"];
         double doubleSunriseTime = [[[responseObject objectForKey:@"sys"] objectForKey:@"sunrise"] doubleValue];
         self.sunriseTime = [self getStringRepresentationOfUnixTime:doubleSunriseTime];
         double doubleSunsetTime = [[[responseObject objectForKey:@"sys"] objectForKey:@"sunset"] doubleValue];

@@ -7,9 +7,12 @@
 //
 
 #import "AddCityTableViewController.h"
+#import "ServerManager.h"
+#import "YourCitiesTableViewController.h"
 
 @interface AddCityTableViewController ()
-
+@property (strong, nonatomic) NSArray *searchResults;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @end
 
 @implementation AddCityTableViewController
@@ -32,26 +35,34 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.searchResults count]?[self.searchResults count]:1;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReuseID" forIndexPath:indexPath];
     
     // Configure the cell...
+    if ([self.searchResults count]) {
+        WeatherStatus *searchResult = self.searchResults[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", searchResult.cityName, searchResult.country];
+    }
     
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView
+didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.searchResults count]) {
+        [self.saveButton setEnabled:YES];
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -87,14 +98,37 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([sender isEqual:self.saveButton]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        YourCitiesTableViewController *yctvc = [segue destinationViewController];
+        WeatherStatus *selectedCityWeather = self.searchResults[indexPath.row];
+        [yctvc.savedCities addObject:@(selectedCityWeather.cityID)];
+    }
 }
-*/
+
+#pragma mark - UISearchBar delegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self getCitiesFromServerByRequest:searchBar.text];
+    [searchBar resignFirstResponder];
+}
+
+#pragma mark - API
+
+- (void)getCitiesFromServerByRequest:(NSString *)cityName {
+    [[ServerManager sharedServerManager] searchCityByName:cityName onSuccess:^(NSArray *cityIDs){
+         if (cityIDs) self.searchResults = [NSArray arrayWithArray:cityIDs];
+         [self.tableView reloadData];
+     } onFailure:^(NSError *error, NSInteger statusCode) {
+         NSLog(@"error = %@, code = %ld", [error localizedDescription], statusCode);
+     }];
+}
 
 @end

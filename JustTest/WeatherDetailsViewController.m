@@ -29,7 +29,7 @@
 }
 
 - (void)setLabelsWithWeatherStatus:(WeatherStatus *)weatherStatus {
-    NSLog(@"%@", weatherStatus.cityName);
+    self.cityNameLabel.text = weatherStatus.cityName;
     self.tempLabel.text = [NSString stringWithFormat:@"%@ °C", weatherStatus.temp];
     self.pressureLabel.text = [NSString stringWithFormat:@"%@ mbar", weatherStatus.pressure];
     self.humidityLabel.text = [NSString stringWithFormat:@"%@ %%", weatherStatus.humidity];

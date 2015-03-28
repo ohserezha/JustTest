@@ -211,6 +211,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0D-Pr-JWt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3ls-yd-yr0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2558" y="-354"/>
         </scene>
@@ -226,6 +227,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <connections>
+                                <outlet property="delegate" destination="b6S-sQ-6tN" id="BgE-YG-0hw"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReuseID" id="s4X-ap-Dcd">
@@ -246,13 +250,20 @@
                                 <segue destination="wsh-LB-fP9" kind="unwind" unwindAction="unwindToYourCities:" id="kdH-yP-dr3"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="vm8-i9-1la"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="vm8-i9-1la">
+                            <connections>
+                                <segue destination="3ls-yd-yr0" kind="unwind" unwindAction="unwindToYourCities:" id="bH4-zx-5ry"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="vm8-i9-1la" id="pha-O5-Moc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jc-Oj-gW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="wsh-LB-fP9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3963" y="-686"/>
+            <point key="canvasLocation" x="2991" y="-1058"/>
         </scene>
         <!--Weather details-->
         <scene sceneID="yQM-11-aiV">
@@ -425,6 +436,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Weather details" id="JS3-KQ-al3"/>
                     <connections>
+                        <outlet property="cityNameLabel" destination="ZmM-ih-QtG" id="Wb5-dO-Hne"/>
                         <outlet property="humidityLabel" destination="5Fk-Sf-fvh" id="gDN-4i-mZz"/>
                         <outlet property="pressureLabel" destination="lIX-GG-5sd" id="AF9-aO-PHX"/>
                         <outlet property="sunriseLabel" destination="3gN-FG-tF4" id="GXX-In-a7x"/>
@@ -474,7 +486,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duX-63-ItL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3287" y="-686"/>
+            <point key="canvasLocation" x="2247" y="-1144"/>
         </scene>
     </scenes>
 </document>

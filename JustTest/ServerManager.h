@@ -19,7 +19,9 @@
                  onSuccess:(void(^)(NSArray* cities))success
                  onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
 
-- (void)searchCityByName:(NSString *)cityName;
+- (void)searchCityByName:(NSString *)cityName
+               onSuccess:(void(^)(NSArray* cities))success
+               onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;;
 
 - (void)getWeatherByLatitude:(NSNumber *)latitude
                    longitude:(NSNumber *)longitude

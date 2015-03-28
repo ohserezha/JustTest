@@ -46,7 +46,7 @@ static NSString *DEFAULT_BASE_URL = @"http://api.openweathermap.org/data/2.5/";
                                  @"units":@"metric" };
     [self.requestOperationManager GET:@"group"
                            parameters:parameters
-                              success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
+                              success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
                                   //NSLog(@"JSON: %@", responseObject);
                                   NSArray* dictsArray = [responseObject objectForKey:@"list"];
                                   NSMutableArray* objectsArray = [NSMutableArray array];
@@ -65,7 +65,26 @@ static NSString *DEFAULT_BASE_URL = @"http://api.openweathermap.org/data/2.5/";
                               }];
 }
 
-- (void)searchCityByName:(NSString *)cityName {
+- (void)searchCityByName:(NSString *)cityName
+               onSuccess:(void(^)(NSArray* cities))success
+               onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;{
+    
+    NSDictionary *parameters = @{ @"q":cityName,
+                                  @"type":@"like" };
+    [self.requestOperationManager GET:@"find" parameters:parameters
+                              success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject){
+                                  NSArray* dictsArray = [responseObject objectForKey:@"list"];
+                                  NSMutableArray* objectsArray = [NSMutableArray array];
+                                  for (NSDictionary* dict in dictsArray) {
+                                      WeatherStatus* wStatus = [[WeatherStatus alloc] initWithServerResponse:dict];
+                                      [objectsArray addObject:wStatus];
+                                  }
+                                  if (success) {
+                                      success(objectsArray);
+                                  }
+                              } failure:^(AFHTTPRequestOperation *operation, NSError *error){
+                                  NSLog(@"Error: %@", error);
+                              }];
     
 }
 
@@ -74,11 +93,11 @@ static NSString *DEFAULT_BASE_URL = @"http://api.openweathermap.org/data/2.5/";
                    onSuccess:(void(^)(NSDictionary  *responseDict)) success
                    onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
     NSDictionary *parameters = @{ @"lat":latitude,
-                                 @"lon":longitude,
+                                  @"lon":longitude,
                                   @"units":@"metric" };
     [self.requestOperationManager GET:@"weather" parameters:parameters
-                              success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
-//                                  NSLog(@"JSON: %@", responseObject);
+                              success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+//                                NSLog(@"JSON: %@", responseObject);
                                   if (success) {
                                       success(responseObject);
                                   }
