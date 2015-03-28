@@ -22,18 +22,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (!self.savedCities){ self.savedCities = [NSMutableArray array]; };
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"userCities" ofType:@"plist"];
+    self.savedCities = [NSMutableArray arrayWithContentsOfFile:filePath];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"%@", self.savedCities);
     [self getWeatherForCitiesFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)addCityIDToUsersList:(NSInteger)cityID {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"userCities" ofType:@"plist"];
+    NSMutableArray *cities = [NSMutableArray arrayWithContentsOfFile:filePath];
+    if (![cities containsObject:@(cityID)]) {
+        [cities addObject:@(cityID)];
+        [cities writeToFile:filePath atomically:YES];
+        self.savedCities = [NSMutableArray arrayWithContentsOfFile:filePath];
+    }
 }
 
 #pragma mark - API

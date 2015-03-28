@@ -109,7 +109,8 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         YourCitiesTableViewController *yctvc = [segue destinationViewController];
         WeatherStatus *selectedCityWeather = self.searchResults[indexPath.row];
-        [yctvc.savedCities addObject:@(selectedCityWeather.cityID)];
+        // [yctvc.savedCities addObject:@(selectedCityWeather.cityID)];
+        [yctvc addCityIDToUsersList:selectedCityWeather.cityID];
     }
 }
 
