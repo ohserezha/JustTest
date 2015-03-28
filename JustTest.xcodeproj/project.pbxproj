@@ -31,6 +31,7 @@
 		441326F61AB992CF0002CB97 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 441326E51AB992CF0002CB97 /* UIWebView+AFNetworking.m */; };
 		441326F81AB9BE8E0002CB97 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441326F71AB9BE8E0002CB97 /* CoreLocation.framework */; };
 		441326FB1AB9D5D00002CB97 /* WeatherStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 441326FA1AB9D5D00002CB97 /* WeatherStatus.m */; };
+		444C23FC1AC72BF700F78879 /* userCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 444C23FB1AC72BF700F78879 /* userCities.plist */; };
 		44914DA11AB8A29C00CE12DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44914DA01AB8A29C00CE12DA /* main.m */; };
 		44914DA41AB8A29C00CE12DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44914DA31AB8A29C00CE12DA /* AppDelegate.m */; };
 		44914DAA1AB8A29C00CE12DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44914DA81AB8A29C00CE12DA /* Main.storyboard */; };
@@ -100,6 +101,7 @@
 		441326F71AB9BE8E0002CB97 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		441326F91AB9D5D00002CB97 /* WeatherStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherStatus.h; sourceTree = "<group>"; };
 		441326FA1AB9D5D00002CB97 /* WeatherStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherStatus.m; sourceTree = "<group>"; };
+		444C23FB1AC72BF700F78879 /* userCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = userCities.plist; sourceTree = "<group>"; };
 		44914D9B1AB8A29C00CE12DA /* JustTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44914D9F1AB8A29C00CE12DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44914DA01AB8A29C00CE12DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				441326BE1AB9920B0002CB97 /* ServerManager.m */,
 				441326F91AB9D5D00002CB97 /* WeatherStatus.h */,
 				441326FA1AB9D5D00002CB97 /* WeatherStatus.m */,
+				444C23FB1AC72BF700F78879 /* userCities.plist */,
 				44914DAB1AB8A29C00CE12DA /* Images.xcassets */,
 				44914D9E1AB8A29C00CE12DA /* Supporting Files */,
 			);
@@ -338,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				444C23FC1AC72BF700F78879 /* userCities.plist in Resources */,
 				44914DAA1AB8A29C00CE12DA /* Main.storyboard in Resources */,
 				44A987EA1AC598B500A85C79 /* Default-568h@2x.png in Resources */,
 				44914DAF1AB8A29C00CE12DA /* LaunchScreen.xib in Resources */,
