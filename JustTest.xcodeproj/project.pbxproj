@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4407E16E1AC7410A004EA7DD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4407E16D1AC7410A004EA7DD /* Default-568h@2x.png */; };
 		441326B31AB8C2070002CB97 /* WeatherAroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 441326B21AB8C2070002CB97 /* WeatherAroundViewController.m */; };
 		441326B61AB8C2370002CB97 /* YourCitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 441326B51AB8C2370002CB97 /* YourCitiesTableViewController.m */; };
 		441326B91AB8C28C0002CB97 /* AddCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 441326B81AB8C28C0002CB97 /* AddCityTableViewController.m */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4407E16D1AC7410A004EA7DD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		441326B11AB8C2070002CB97 /* WeatherAroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAroundViewController.h; sourceTree = "<group>"; };
 		441326B21AB8C2070002CB97 /* WeatherAroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAroundViewController.m; sourceTree = "<group>"; };
 		441326B41AB8C2370002CB97 /* YourCitiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourCitiesTableViewController.h; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		44914D921AB8A29C00CE12DA = {
 			isa = PBXGroup;
 			children = (
+				4407E16D1AC7410A004EA7DD /* Default-568h@2x.png */,
 				44914D9D1AB8A29C00CE12DA /* JustTest */,
 				44914DB71AB8A29D00CE12DA /* JustTestTests */,
 				44914D9C1AB8A29C00CE12DA /* Products */,
@@ -341,6 +344,7 @@
 				444C23FC1AC72BF700F78879 /* userCities.plist in Resources */,
 				44914DAA1AB8A29C00CE12DA /* Main.storyboard in Resources */,
 				44914DAF1AB8A29C00CE12DA /* LaunchScreen.xib in Resources */,
+				4407E16E1AC7410A004EA7DD /* Default-568h@2x.png in Resources */,
 				44914DAC1AB8A29C00CE12DA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
