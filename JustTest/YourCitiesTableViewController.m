@@ -36,11 +36,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)addCityIDToUsersList:(NSInteger)cityID {
+- (void)addCityIDToUsersList:(NSNumber *)cityID {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"userCities" ofType:@"plist"];
     NSMutableArray *cities = [NSMutableArray arrayWithContentsOfFile:filePath];
-    if (![cities containsObject:@(cityID)]) {
-        [cities addObject:@(cityID)];
+    if (![cities containsObject:cityID]) {
+        [cities addObject:cityID];
         [cities writeToFile:filePath atomically:YES];
         self.savedCities = [NSMutableArray arrayWithContentsOfFile:filePath];
     }

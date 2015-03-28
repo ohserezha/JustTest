@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>524901</string>
-	<string>703448</string>
-	<string>2643743</string>
+	<integer>524901</integer>
+	<integer>703448</integer>
+	<integer>2643743</integer>
 </array>
 </plist>

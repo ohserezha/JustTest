@@ -10,5 +10,5 @@
 
 @interface YourCitiesTableViewController : UITableViewController
 @property (strong, nonatomic) NSMutableArray *savedCities;
-- (void)addCityIDToUsersList:(NSInteger)cityID ;
+- (void)addCityIDToUsersList:(NSNumber *)cityID ;
 @end
