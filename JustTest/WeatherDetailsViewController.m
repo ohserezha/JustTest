@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"WeatherDetailsViewController weatherStatus %@", self.weatherStatus);
     if (self.weatherStatus) {
         [self setLabelsWithWeatherStatus:self.weatherStatus];
     }
@@ -30,13 +29,13 @@
 
 - (void)setLabelsWithWeatherStatus:(WeatherStatus *)weatherStatus {
     self.cityNameLabel.text = weatherStatus.cityName;
-    self.tempLabel.text = [NSString stringWithFormat:@"%@ °C", weatherStatus.temp];
-    self.pressureLabel.text = [NSString stringWithFormat:@"%@ mbar", weatherStatus.pressure];
-    self.humidityLabel.text = [NSString stringWithFormat:@"%@ %%", weatherStatus.humidity];
-    self.tempMinLabel.text = [NSString stringWithFormat:@"%@ °C", weatherStatus.tempMin];
-    self.tempMaxLabel.text = [NSString stringWithFormat:@"%@ °C", weatherStatus.tempMax];
-    self.windSpdLabel.text = [NSString stringWithFormat:@"%@ m/s", weatherStatus.windSpeed];
-    self.windDirectionLabel.text = [NSString stringWithFormat:@"%@ °", weatherStatus.windDirection];
+    self.tempLabel.text = [NSString stringWithFormat:@"%.1f °C", [weatherStatus.temp doubleValue]];
+    self.pressureLabel.text = [NSString stringWithFormat:@"%.2f mbar", [weatherStatus.pressure doubleValue]];
+    self.humidityLabel.text = [NSString stringWithFormat:@"%.1f %%", [weatherStatus.humidity doubleValue]];
+    self.tempMinLabel.text = [NSString stringWithFormat:@"%.1f °C", [weatherStatus.tempMin doubleValue]];
+    self.tempMaxLabel.text = [NSString stringWithFormat:@"%.1f °C", [weatherStatus.tempMax doubleValue]];
+    self.windSpdLabel.text = [NSString stringWithFormat:@"%.2f m/s", [weatherStatus.windSpeed doubleValue]];
+    self.windDirectionLabel.text = [NSString stringWithFormat:@"%.f °", [weatherStatus.windDirection doubleValue]];
     self.sunriseLabel.text = [NSString stringWithFormat:@"%@", weatherStatus.sunriseTime];
     self.sunsetLabel.text = [NSString stringWithFormat:@"%@", weatherStatus.sunsetTime];
 }

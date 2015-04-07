@@ -56,7 +56,6 @@
 
 - (void)getWeatherFromServer {
     CLLocationCoordinate2D location = self.locationManager.location.coordinate;
-    //NSLog(@"gettin weather for lat: %@ long: %@", @(location.latitude), @(location.longitude));
     [[ServerManager sharedServerManager] getWeatherByLatitude:@(location.latitude) longitude:@(location.longitude)
                                                     onSuccess:^(NSDictionary *responseDict) {
                                                         self.weatherStatus = [[WeatherStatus alloc] initWithServerResponse:responseDict];
@@ -68,31 +67,14 @@
 
 - (void)updateViewWithWeatherStatus:(WeatherStatus *)weather {
     self.cityName.text = weather.cityName;
-    self.temp.text = [NSString stringWithFormat:@"%@ °C", weather.temp];
-    self.pressure.text = [NSString stringWithFormat:@"%@ mbar", weather.pressure];
-    self.humidity.text = [NSString stringWithFormat:@"%@ %%", weather.humidity];
-    self.tempMin.text = [NSString stringWithFormat:@"%@ °C", weather.tempMin];
-    self.tempMax.text = [NSString stringWithFormat:@"%@ °C", weather.tempMax];
-    self.windSpeed.text = [NSString stringWithFormat:@"%@ m/s", weather.windSpeed];
-    self.windDirection.text = [NSString stringWithFormat:@"%@ °", weather.windDirection];
+    self.temp.text = [NSString stringWithFormat:@"%.1f °C", [weather.temp doubleValue]];
+    self.pressure.text = [NSString stringWithFormat:@"%.1f mbar", [weather.pressure doubleValue]];
+    self.humidity.text = [NSString stringWithFormat:@"%.f %%", [weather.humidity doubleValue]];
+    self.tempMin.text = [NSString stringWithFormat:@"%.1f °C", [weather.tempMin doubleValue]];
+    self.tempMax.text = [NSString stringWithFormat:@"%.1f °C", [weather.tempMax doubleValue]];
+    self.windSpeed.text = [NSString stringWithFormat:@"%.1f m/s", [weather.windSpeed doubleValue]];
+    self.windDirection.text = [NSString stringWithFormat:@"%.f °", [weather.windDirection doubleValue]];
 }
-
-/*
-- (void)defineLocation {
-    self.locationManager = [[CLLocationManager alloc] init];
-    [self.locationManager requestWhenInUseAuthorization];
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = 3000;
-        self.locationManager.distanceFilter = 1000;
-        [self.locationManager startUpdatingLocation];
-//        [self performSelector:@selector(stopUpdatingLocationWithMessage:) withObject:@"Timed Out" afterDelay:3];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Not Determined" message:@"location services are off for this app" delegate:nil cancelButtonTitle:@"Okaaay..." otherButtonTitles:nil];
-        [alert show];
-    }
-} 
-*/
 
 - (void)stopUpdatingLocationWithMessage:(NSString *)state {
     [self.locationManager stopUpdatingLocation];

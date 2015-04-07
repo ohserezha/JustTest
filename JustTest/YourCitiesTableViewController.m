@@ -52,7 +52,9 @@
     if ([self.savedCities count]>0){
         [[ServerManager sharedServerManager] getWeatherByCityIDs:self.savedCities
          onSuccess:^(NSArray *forecasts){
-             if (forecasts) self.weatherStatusesArray = [[NSMutableArray alloc] initWithArray:forecasts];
+             if (forecasts) {
+                 self.weatherStatusesArray = [[NSMutableArray alloc] initWithArray:forecasts];
+             }
              [self.tableView reloadData];
          } onFailure:^(NSError *error, NSInteger statusCode) {
              NSLog(@"error = %@, code = %ld", [error localizedDescription], statusCode);

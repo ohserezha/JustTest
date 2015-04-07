@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JustTest/WeatherDetailsViewController.m"
-            timestampString = "449168695.04384"
+            timestampString = "450100774.379204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "-setLabelsWithWeatherStatus:"
             landmarkType = "5">
          </BreakpointContent>

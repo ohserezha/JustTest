@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AddCityTableViewController : UITableViewController
-//@property (readonly) NSInteger cityToSave;
+
 @end
